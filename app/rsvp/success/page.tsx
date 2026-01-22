@@ -1,11 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { QRCodeDisplay } from '../../../components/QRCodeDisplay';
 
-export default function RSVPSuccessPage() {
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+function RSVPSuccessContent() {
   const [isLoaded, setIsLoaded] = useState(false);
   const searchParams = useSearchParams();
   
