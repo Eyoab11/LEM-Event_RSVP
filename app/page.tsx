@@ -89,7 +89,7 @@ export default function Home() {
           {/* Subtitle */}
           <div className={`mb-6 md:mb-8 ${isLoaded ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
             <p className="text-amber-300 text-xl md:text-2xl lg:text-3xl font-medium tracking-wide">
-              The Levy Eroma Media Launch
+              The Levy Eromo Media Launch
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export default function Home() {
           {/* Description */}
           <div className={`${isLoaded ? 'animate-fade-in-up delay-500' : 'opacity-0'}`}>
             <p className="text-gray-200 text-lg md:text-xl lg:text-2xl leading-relaxed max-w-2xl font-light">
-              We're officially launching Levy Eroma Media and we want you there! Join us for a first look at our upcoming projects and an evening of bold storytelling.
+              We're officially launching Levy Eromo Media and we want you there! Join us for a first look at our upcoming projects and an evening of bold storytelling.
             </p>
           </div>
         </div>
