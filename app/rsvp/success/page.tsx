@@ -213,3 +213,15 @@ function RSVPSuccessContent() {
     </div>
   );
 }
+
+export default function RSVPSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-amber-500/30 border-t-amber-500 rounded-full animate-spin"></div>
+      </div>
+    }>
+      <RSVPSuccessContent />
+    </Suspense>
+  );
+}
