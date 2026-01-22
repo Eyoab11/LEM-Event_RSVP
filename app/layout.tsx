@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -9,9 +9,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Levy Eroma Media Launch - RSVP",
-  description: "Join us for the official launch of Levy Eroma Media. An evening of bold storytelling, craft cocktails, and new beginnings.",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  title: "LEM Ventures Launch - RSVP",
+  description: "Join us for the official launch of LEM Ventures. An evening of networking, innovation, and celebration.",
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({

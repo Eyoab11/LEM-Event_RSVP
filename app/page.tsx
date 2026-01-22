@@ -68,19 +68,13 @@ export default function Home() {
         <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-16 md:py-20">
           {/* Logo */}
           <div className={`mb-6 md:mb-8 ${isLoaded ? 'animate-slide-in-left delay-100' : 'opacity-0'}`}>
-            <div className="flex items-center space-x-4 md:space-x-6">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-lg flex items-center justify-center shadow-2xl">
-                <div className="w-9 h-9 md:w-12 md:h-12 bg-black rounded-md flex flex-col justify-center space-y-1 px-1.5">
-                  <div className="h-1 bg-white rounded-full"></div>
-                  <div className="h-1 bg-white rounded-full"></div>
-                  <div className="h-1 bg-white rounded-full"></div>
-                </div>
-              </div>
-              <div className="text-white font-black text-lg md:text-2xl lg:text-3xl tracking-wider leading-tight">
-                LEVY<br />
-                EROMA<br />
-                MEDIA
-              </div>
+            <div className="w-32 h-12 md:w-40 md:h-16 lg:w-48 lg:h-20 relative">
+              <Image
+                src="/lemmm-removebg-preview.png"
+                alt="Levy Eromo Media Logo"
+                fill
+                className="object-contain"
+              />
             </div>
           </div>
 
@@ -128,17 +122,17 @@ export default function Home() {
 
         <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-16">
           {/* Premium Content Container */}
-          <div className="premium-glass rounded-3xl md:rounded-[3rem] p-8 md:p-12 lg:p-16 hover-lift-premium">
+          <div className="premium-glass rounded-3xl md:rounded-[3rem] p-8 md:p-12 lg:p-12 xl:p-16 hover-lift-premium max-w-4xl mx-auto">
             {/* Description */}
             <div className="animate-on-scroll mb-8 md:mb-12">
-              <p className="text-gray-100 text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed text-center max-w-4xl mx-auto font-light tracking-wide">
+              <p className="text-gray-100 text-lg md:text-xl lg:text-2xl xl:text-2xl leading-relaxed text-center max-w-3xl mx-auto font-light tracking-wide">
                 Expect craft cocktails, curated bites, and great company as we toast to new beginnings. We can't wait to celebrate with you!
               </p>
             </div>
 
             {/* Wine Glasses Image */}
             <div className="animate-on-scroll flex justify-center">
-              <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96">
+              <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80">
                 <Image
                   src="/Wine glasses 1.png"
                   alt="Wine Glasses"
@@ -160,14 +154,14 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-16 space-y-12 md:space-y-16">
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-16 space-y-6 md:space-y-8">
           {/* Where */}
           <div className="animate-on-scroll">
             <div className="text-center">
               <h2 className="text-amber-300/80 text-sm md:text-base uppercase tracking-[0.3em] mb-6 md:mb-8 font-medium">Where</h2>
-              <div className="premium-glass rounded-3xl md:rounded-[2.5rem] p-6 md:p-8 lg:p-12 hover-lift-premium">
-                <h3 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-extralight mb-4 md:mb-6 premium-text-gradient tracking-tight">The Ritz Carlton</h3>
-                <p className="text-gray-200 text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed font-light">
+              <div>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-light mb-4 md:mb-6 premium-text-gradient tracking-tight">The Ritz Carlton</h3>
+                <p className="text-gray-200 text-base md:text-lg lg:text-xl xl:text-xl leading-relaxed font-light">
                   900 W Olympic Blvd.<br />
                   Los Angeles, CA 90015
                 </p>
@@ -179,9 +173,9 @@ export default function Home() {
           <div className="animate-on-scroll">
             <div className="text-center">
               <h2 className="text-amber-300/80 text-sm md:text-base uppercase tracking-[0.3em] mb-6 md:mb-8 font-medium">When</h2>
-              <div className="premium-glass rounded-3xl md:rounded-[2.5rem] p-6 md:p-8 lg:p-12 hover-lift-premium">
-                <h3 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-extralight mb-4 md:mb-6 premium-text-gradient tracking-tight">Saturday February 21, 2026</h3>
-                <p className="text-amber-300 text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium tracking-wide">7:00PM - 11:00PM</p>
+              <div>
+                <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-3xl font-light mb-4 md:mb-6 premium-text-gradient tracking-tight">Saturday February 21, 2026</h3>
+                <p className="text-amber-300 text-lg md:text-xl lg:text-2xl xl:text-2xl font-medium tracking-wide">7:00PM - 11:00PM</p>
               </div>
             </div>
           </div>
@@ -190,7 +184,7 @@ export default function Home() {
 
       {/* Section 4: Final CTA - Reduced height */}
       <section className="relative min-h-[80vh] flex flex-col bg-gradient-to-t from-black via-gray-900 to-black">
-        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-16 text-center space-y-12 md:space-y-16">
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-16 text-center space-y-6 md:space-y-8">
           {/* Dress Code */}
           <div className="animate-on-scroll">
             <p className="text-gray-200 text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light tracking-wide">
@@ -200,27 +194,23 @@ export default function Home() {
 
           {/* RSVP Button */}
           <div className="animate-on-scroll">
-            <button className="premium-button bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-400 text-white px-12 py-6 md:px-16 md:py-8 lg:px-20 lg:py-10 rounded-full text-xl md:text-2xl lg:text-3xl font-bold tracking-wider transition-all duration-500 shadow-2xl border border-amber-400/30">
-              Count me in
-            </button>
+            <a href="/rsvp">
+              <button className="premium-button bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-400 text-white px-8 py-4 md:px-12 md:py-6 lg:px-14 lg:py-7 rounded-full text-lg md:text-xl lg:text-2xl font-bold tracking-wider transition-all duration-500 shadow-2xl border border-amber-400/30">
+                Count me in
+              </button>
+            </a>
           </div>
 
           {/* Footer Logo */}
           <div className="animate-on-scroll">
             <div className="flex justify-center">
-              <div className="flex items-center space-x-4 md:space-x-6 opacity-40 hover:opacity-60 transition-opacity duration-300">
-                <div className="w-8 h-8 md:w-10 md:h-10 bg-white/90 rounded-lg flex items-center justify-center">
-                  <div className="w-6 h-6 md:w-8 md:h-8 bg-black rounded-md flex flex-col justify-center space-y-0.5 px-1">
-                    <div className="h-0.5 bg-white rounded-full"></div>
-                    <div className="h-0.5 bg-white rounded-full"></div>
-                    <div className="h-0.5 bg-white rounded-full"></div>
-                  </div>
-                </div>
-                <div className="text-white font-bold text-base md:text-xl tracking-wider leading-tight">
-                  LEVY<br />
-                  EROMA<br />
-                  MEDIA
-                </div>
+              <div className="w-24 h-8 md:w-32 md:h-10 lg:w-40 lg:h-12 relative opacity-40 hover:opacity-60 transition-opacity duration-300">
+                <Image
+                  src="/lemmm-removebg-preview.png"
+                  alt="Levy Eromo Media Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
