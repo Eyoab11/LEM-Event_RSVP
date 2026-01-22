@@ -90,7 +90,7 @@ export function QRCodeDisplay({ attendeeName, registrationId, eventId }: QRCodeD
       
       {isLoading ? (
         <div className="flex flex-col items-center space-y-4">
-          <div className="w-48 h-48 bg-gray-800 rounded-2xl flex items-center justify-center">
+          <div className="w-48 h-48 bg-black/50 border border-amber-500/30 rounded-2xl flex items-center justify-center">
             <div className="w-8 h-8 border-2 border-amber-500/30 border-t-amber-500 rounded-full animate-spin"></div>
           </div>
           <p className="text-gray-400">Generating your QR code...</p>

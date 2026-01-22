@@ -37,10 +37,10 @@ export function PartnerLogoGrid({ partners, displayTiers }: PartnerLogoGridProps
 
   const getTierSize = (tier: string) => {
     switch (tier) {
-      case 'title': return 'w-40 h-24 md:w-48 md:h-28 lg:w-52 lg:h-32';
-      case 'gold': return 'w-32 h-20 md:w-36 md:h-22 lg:w-40 lg:h-24';
-      case 'silver': return 'w-28 h-16 md:w-32 md:h-18 lg:w-36 lg:h-20';
-      default: return 'w-32 h-20';
+      case 'title': return 'w-32 h-20 sm:w-40 sm:h-24 md:w-48 md:h-28 lg:w-52 lg:h-32';
+      case 'gold': return 'w-28 h-18 sm:w-32 sm:h-20 md:w-36 md:h-22 lg:w-40 lg:h-24';
+      case 'silver': return 'w-24 h-14 sm:w-28 sm:h-16 md:w-32 md:h-18 lg:w-36 lg:h-20';
+      default: return 'w-28 h-18 sm:w-32 sm:h-20';
     }
   };
 
@@ -72,48 +72,50 @@ export function PartnerLogoGrid({ partners, displayTiers }: PartnerLogoGridProps
   return (
     <div className="relative">
       {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-amber-900/10 via-transparent to-amber-800/5 rounded-3xl"></div>
+      <div className="absolute inset-0 bg-black rounded-3xl"></div>
       <div className="absolute top-4 right-4 w-32 h-32 bg-amber-400/5 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-4 left-4 w-24 h-24 bg-amber-600/8 rounded-full blur-xl"></div>
+      <div className="absolute bottom-4 left-4 w-24 h-24 bg-orange-600/8 rounded-full blur-xl"></div>
+      <div className="absolute top-1/2 left-1/6 w-16 h-16 bg-amber-500/6 rounded-full blur-lg"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-40 h-40 bg-orange-400/4 rounded-full blur-2xl"></div>
       
-      <div className="premium-glass rounded-3xl p-8 md:p-12 max-w-4xl mx-auto relative overflow-hidden">
+      <div className="premium-glass rounded-3xl p-6 md:p-8 lg:p-12 max-w-4xl mx-auto relative overflow-hidden">
         {/* Subtle top border accent */}
         <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent"></div>
         
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center mb-6">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-amber-600"></div>
-            <div className="mx-4">
+        <div className="text-center mb-8 md:mb-12">
+          <div className="flex items-center justify-center mb-4 md:mb-6">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent via-amber-400 to-amber-600"></div>
+            <div className="mx-3 md:mx-4">
               <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
             </div>
-            <div className="w-12 h-px bg-gradient-to-r from-amber-600 via-amber-400 to-transparent"></div>
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-amber-600 via-amber-400 to-transparent"></div>
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-light mb-4 premium-text-gradient tracking-wide">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-3 md:mb-4 premium-text-gradient tracking-wide">
             Event Partners
           </h2>
-          <p className="text-gray-300 leading-relaxed text-lg font-light tracking-wide">
+          <p className="text-gray-300 leading-relaxed text-base md:text-lg font-light tracking-wide px-4">
             Proudly supported by our distinguished partners
           </p>
           
           {/* Decorative underline */}
-          <div className="flex items-center justify-center mt-6">
-            <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"></div>
+          <div className="flex items-center justify-center mt-4 md:mt-6">
+            <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"></div>
           </div>
         </div>
 
-        <div className="space-y-16">
+        <div className="space-y-12 md:space-y-16">
           {displayTiers ? (
             // Display by tiers
             <>
               {partnersByTier.title.length > 0 && (
                 <div className="text-center">
-                  <div className="flex items-center justify-center mb-8">
-                    <div className="w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
-                    <h3 className="text-amber-300 text-sm uppercase tracking-[0.2em] mx-4 font-medium">
+                  <div className="flex items-center justify-center mb-6 md:mb-8">
+                    <div className="w-6 md:w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
+                    <h3 className="text-amber-300 text-xs sm:text-sm uppercase tracking-[0.2em] mx-3 md:mx-4 font-medium">
                       {getTierTitle('title')}
                     </h3>
-                    <div className="w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
+                    <div className="w-6 md:w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
                   </div>
                   <div className="flex justify-center">
                     <PartnerLogo partner={partnersByTier.title[0]} />
@@ -123,14 +125,14 @@ export function PartnerLogoGrid({ partners, displayTiers }: PartnerLogoGridProps
 
               {partnersByTier.gold.length > 0 && (
                 <div className="text-center">
-                  <div className="flex items-center justify-center mb-8">
-                    <div className="w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
-                    <h3 className="text-amber-300 text-sm uppercase tracking-[0.2em] mx-4 font-medium">
+                  <div className="flex items-center justify-center mb-6 md:mb-8">
+                    <div className="w-6 md:w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
+                    <h3 className="text-amber-300 text-xs sm:text-sm uppercase tracking-[0.2em] mx-3 md:mx-4 font-medium">
                       {getTierTitle('gold')}
                     </h3>
-                    <div className="w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
+                    <div className="w-6 md:w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
                   </div>
-                  <div className="flex flex-wrap justify-center gap-8">
+                  <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
                     {partnersByTier.gold.map(partner => (
                       <PartnerLogo key={partner.id} partner={partner} />
                     ))}
@@ -140,14 +142,14 @@ export function PartnerLogoGrid({ partners, displayTiers }: PartnerLogoGridProps
 
               {partnersByTier.silver.length > 0 && (
                 <div className="text-center">
-                  <div className="flex items-center justify-center mb-8">
-                    <div className="w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
-                    <h3 className="text-amber-300 text-sm uppercase tracking-[0.2em] mx-4 font-medium">
+                  <div className="flex items-center justify-center mb-6 md:mb-8">
+                    <div className="w-6 md:w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
+                    <h3 className="text-amber-300 text-xs sm:text-sm uppercase tracking-[0.2em] mx-3 md:mx-4 font-medium">
                       {getTierTitle('silver')}
                     </h3>
-                    <div className="w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
+                    <div className="w-6 md:w-8 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent"></div>
                   </div>
-                  <div className="flex flex-wrap justify-center gap-6">
+                  <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6">
                     {partnersByTier.silver.map(partner => (
                       <PartnerLogo key={partner.id} partner={partner} />
                     ))}
@@ -157,7 +159,7 @@ export function PartnerLogoGrid({ partners, displayTiers }: PartnerLogoGridProps
             </>
           ) : (
             // Display all partners together
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
               {activePartners.map(partner => (
                 <PartnerLogo key={partner.id} partner={partner} />
               ))}

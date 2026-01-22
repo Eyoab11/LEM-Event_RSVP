@@ -112,12 +112,14 @@ export default function Home() {
       </section>
 
       {/* Section 2: Features with Wine Glasses - Reduced height */}
-      <section className="relative min-h-[80vh] flex flex-col bg-gradient-to-b from-black via-gray-900 to-black">
+      <section className="relative min-h-[80vh] flex flex-col bg-black">
         {/* Sophisticated Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-900/5 via-transparent to-amber-800/10"></div>
+          <div className="absolute inset-0 bg-black"></div>
           <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-amber-600/8 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-orange-600/8 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/6 right-1/6 w-32 h-32 bg-amber-500/6 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-1/6 left-1/3 w-48 h-48 bg-orange-400/4 rounded-full blur-2xl"></div>
         </div>
 
         <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-16">
@@ -147,11 +149,14 @@ export default function Home() {
       </section>
 
       {/* Section 3: Event Details - Reduced height */}
-      <section className="relative min-h-[90vh] flex flex-col bg-gradient-to-b from-black via-gray-900 to-black">
+      <section className="relative min-h-[90vh] flex flex-col bg-black">
         {/* Luxury Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-tr from-amber-900/8 via-transparent to-amber-700/5"></div>
+          <div className="absolute inset-0 bg-black"></div>
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent"></div>
+          <div className="absolute top-1/4 right-1/5 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 left-1/4 w-40 h-40 bg-orange-600/7 rounded-full blur-2xl"></div>
+          <div className="absolute top-2/3 right-1/3 w-24 h-24 bg-amber-400/6 rounded-full blur-xl"></div>
         </div>
 
         <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-16 space-y-6 md:space-y-8">
@@ -183,7 +188,13 @@ export default function Home() {
       </section>
 
       {/* Section 4: Final CTA - Reduced height */}
-      <section className="relative min-h-[80vh] flex flex-col bg-gradient-to-t from-black via-gray-900 to-black">
+      <section className="relative min-h-[80vh] flex flex-col bg-black">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-black"></div>
+          <div className="absolute top-1/5 left-1/6 w-56 h-56 bg-amber-500/4 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/5 w-32 h-32 bg-orange-600/6 rounded-full blur-2xl"></div>
+          <div className="absolute top-3/4 left-2/3 w-40 h-40 bg-amber-400/5 rounded-full blur-2xl"></div>
+        </div>
         <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-16 text-center space-y-6 md:space-y-8">
           {/* Dress Code */}
           <div className="animate-on-scroll">

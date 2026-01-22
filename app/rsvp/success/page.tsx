@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { QRCodeDisplay } from '@/components/QRCodeDisplay';
+import { QRCodeDisplay } from '../../../components/QRCodeDisplay';
 
 export default function RSVPSuccessPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,20 +42,23 @@ export default function RSVPSuccessPage() {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen">
-      <section className="relative min-h-screen flex flex-col">
+    <div className="bg-black text-white min-h-screen overflow-x-hidden">
+      <section className="relative min-h-screen flex flex-col overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-400/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-amber-600/8 rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 bg-black"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-400/6 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-600/8 rounded-full blur-3xl"></div>
+          <div className="absolute top-2/3 left-1/6 w-24 h-24 bg-amber-500/5 rounded-full blur-xl"></div>
+          <div className="absolute top-1/6 right-1/5 w-64 h-64 bg-orange-400/4 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-1/6 left-2/3 w-40 h-40 bg-amber-600/6 rounded-full blur-2xl"></div>
         </div>
 
         {/* Header */}
-        <div className="relative z-10 px-8 md:px-16 lg:px-24 xl:px-32 py-8">
+        <div className="relative z-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-6 md:py-8">
           <div className={`flex items-center justify-between ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
             {/* Logo */}
-            <div className="w-28 h-10 md:w-32 md:h-12 lg:w-36 lg:h-14 relative">
+            <div className="w-24 h-8 sm:w-28 sm:h-10 md:w-32 md:h-12 lg:w-36 lg:h-14 relative flex-shrink-0">
               <Image
                 src="/lemmm-removebg-preview.png"
                 alt="LEM Ventures Logo"
@@ -66,7 +69,7 @@ export default function RSVPSuccessPage() {
 
             {/* Home Button */}
             <a href="/">
-              <button className="premium-button bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 hover:from-gray-600 hover:via-gray-500 hover:to-gray-600 text-white px-6 py-3 rounded-full text-sm font-medium tracking-wide transition-all duration-300">
+              <button className="premium-button bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 hover:from-gray-600 hover:via-gray-500 hover:to-gray-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 flex-shrink-0">
                 ← Home
               </button>
             </a>
@@ -74,7 +77,7 @@ export default function RSVPSuccessPage() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-16">
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-8 md:py-16">
           <div className="max-w-4xl mx-auto w-full text-center">
             
             {/* Success Icon */}
@@ -95,15 +98,15 @@ export default function RSVPSuccessPage() {
             </div>
 
             {/* Title */}
-            <div className={`mb-8 ${isLoaded ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extralight leading-tight tracking-tight mb-6">
+            <div className={`mb-6 md:mb-8 ${isLoaded ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extralight leading-tight tracking-tight mb-4 md:mb-6">
                 {isWaitlisted ? (
                   <span className="block premium-text-gradient">You're on the List!</span>
                 ) : (
                   <span className="block premium-text-gradient">You're All Set!</span>
                 )}
               </h1>
-              <p className="text-gray-300 text-xl md:text-2xl font-light max-w-3xl mx-auto leading-relaxed">
+              <p className="text-gray-300 text-lg sm:text-xl md:text-2xl font-light max-w-3xl mx-auto leading-relaxed px-4">
                 {isWaitlisted ? (
                   <>Thank you for your interest, {attendeeName}. You've been added to our waitlist and we'll notify you if spots become available.</>
                 ) : (
@@ -113,8 +116,8 @@ export default function RSVPSuccessPage() {
             </div>
 
             {/* Registration Details */}
-            <div className={`mb-12 ${isLoaded ? 'animate-fade-in-up delay-400' : 'opacity-0'}`}>
-              <div className="premium-glass rounded-3xl p-8 md:p-12 max-w-2xl mx-auto">
+            <div className={`mb-8 md:mb-12 ${isLoaded ? 'animate-fade-in-up delay-400' : 'opacity-0'}`}>
+              <div className="premium-glass rounded-3xl p-6 md:p-8 lg:p-12 max-w-2xl mx-auto">
                 <h2 className="text-2xl md:text-3xl font-light mb-6 premium-text-gradient">
                   Registration Details
                 </h2>
@@ -150,7 +153,7 @@ export default function RSVPSuccessPage() {
                 <div className="space-y-4">
                   <button 
                     onClick={handleAddToCalendar}
-                    className="premium-button bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-400 text-white px-8 py-4 rounded-full text-lg font-medium tracking-wide mx-4"
+                    className="premium-button bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-400 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-medium tracking-wide mx-2"
                   >
                     📅 Add to Google Calendar
                   </button>
@@ -160,13 +163,13 @@ export default function RSVPSuccessPage() {
                 </div>
               )}
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
                 <a href="/">
-                  <button className="premium-button bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 hover:from-gray-600 hover:via-gray-500 hover:to-gray-600 text-white px-8 py-4 rounded-full text-lg font-medium tracking-wide">
+                  <button className="premium-button bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 hover:from-gray-600 hover:via-gray-500 hover:to-gray-600 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-medium tracking-wide w-full sm:w-auto">
                     Back to Home
                   </button>
                 </a>
-                <button className="text-amber-400 hover:text-amber-300 font-medium transition-colors duration-300 px-8 py-4">
+                <button className="text-amber-400 hover:text-amber-300 font-medium transition-colors duration-300 px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
                   Share Event
                 </button>
               </div>
