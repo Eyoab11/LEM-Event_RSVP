@@ -182,7 +182,7 @@ export default function Home() {
             <div className="text-center">
               <h2 className="text-amber-300/80 text-sm md:text-base uppercase tracking-[0.3em] mb-4 md:mb-6 font-medium">When</h2>
               <div>
-                <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-3xl font-light mb-3 md:mb-4 premium-text-gradient tracking-tight">Saturday February 21, 2026</h3>
+                <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-3xl font-light mb-3 md:mb-4 premium-text-gradient tracking-tight">March 14</h3>
                 <p className="text-amber-300 text-lg md:text-xl lg:text-2xl xl:text-2xl font-medium tracking-wide">7:00PM - 11:00PM</p>
               </div>
             </div>
@@ -198,11 +198,11 @@ export default function Home() {
           <div className="absolute bottom-1/4 right-1/5 w-48 h-48 bg-orange-600/12 rounded-full blur-2xl"></div>
           <div className="absolute top-3/4 left-2/3 w-56 h-56 bg-orange-400/8 rounded-full blur-2xl"></div>
         </div>
-        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-6 md:py-8 text-center space-y-4 md:space-y-6">
-          {/* Dress Code */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-6 md:py-8 text-center space-y-6 md:space-y-8">
+          {/* Dress Code - Centered between content above and button below */}
           <div className="animate-on-scroll">
-            <p className="text-gray-200 text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light tracking-wide">
-              <span className="text-amber-300 font-medium">Dress fabulous!</span>
+            <p className="text-gray-200 text-lg md:text-xl lg:text-2xl xl:text-3xl font-light tracking-wide italic">
+              Dress Fabulous!
             </p>
           </div>
 
@@ -215,10 +215,10 @@ export default function Home() {
             </a>
           </div>
 
-          {/* Footer Logo */}
+          {/* Footer Logo - Doubled in size */}
           <div className="animate-on-scroll">
             <div className="flex justify-center">
-              <div className="w-24 h-8 md:w-32 md:h-10 lg:w-40 lg:h-12 relative opacity-40 hover:opacity-60 transition-opacity duration-300">
+              <div className="w-48 h-16 md:w-64 md:h-20 lg:w-80 lg:h-24 relative opacity-40 hover:opacity-60 transition-opacity duration-300">
                 <Image
                   src="/lemmm-removebg-preview.png"
                   alt="Levy Eromo Media Logo"
