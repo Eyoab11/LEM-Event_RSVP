@@ -130,10 +130,10 @@ export default function Home() {
             <div className="animate-on-scroll flex justify-center">
               <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80">
                 <Image
-                  src="/Wine glasses 1.png"
+                  src="/wine.png"
                   alt="Wine Glasses"
                   fill
-                  className="object-contain animate-float drop-shadow-2xl"
+                  className="object-contain animate-float drop-shadow-2xl brightness-0 invert"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-400/10 via-transparent to-transparent rounded-full"></div>
               </div>
@@ -142,8 +142,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 3: Event Details - Minimized height */}
-      <section className="relative min-h-[60vh] flex flex-col bg-black">
+      {/* Section 3: Event Details - Reduced spacing on mobile */}
+      <section className="relative min-h-[50vh] md:min-h-[60vh] flex flex-col bg-black">
         {/* Luxury Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-black"></div>
@@ -153,7 +153,7 @@ export default function Home() {
           <div className="absolute top-2/3 right-1/3 w-32 h-32 bg-orange-400/10 rounded-full blur-xl"></div>
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-6 md:py-8 space-y-4 md:space-y-6">
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-4 md:py-8 space-y-3 md:space-y-6">
           {/* Where */}
           <div className="animate-on-scroll">
             <div className="text-center">
@@ -168,9 +168,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Elegant Divider - Between Where and When */}
+          {/* Elegant Divider - Between Where and When - Reduced spacing on mobile */}
           <div className="animate-on-scroll">
-            <div className="flex items-center justify-center space-x-4 py-4 md:py-6">
+            <div className="flex items-center justify-center space-x-4 py-2 md:py-6">
               <div className="w-24 md:w-40 h-1 bg-gradient-to-r from-transparent via-amber-400 to-amber-600"></div>
               <div className="w-3 h-3 bg-amber-400 rounded-full animate-pulse-glow"></div>
               <div className="w-24 md:w-40 h-1 bg-gradient-to-r from-amber-600 via-amber-400 to-transparent"></div>
@@ -190,15 +190,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 4: Final CTA - Minimized height */}
-      <section className="relative min-h-[50vh] flex flex-col bg-black">
+      {/* Section 4: Final CTA - Reduced height for mobile */}
+      <section className="relative min-h-[30vh] md:min-h-[40vh] flex flex-col bg-black">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-black"></div>
           <div className="absolute top-1/5 left-1/6 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/5 w-48 h-48 bg-orange-600/12 rounded-full blur-2xl"></div>
           <div className="absolute top-3/4 left-2/3 w-56 h-56 bg-orange-400/8 rounded-full blur-2xl"></div>
         </div>
-        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-6 md:py-8 text-center space-y-6 md:space-y-8">
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-4 md:py-8 text-center space-y-4 md:space-y-8">
           {/* Dress Code - Centered between content above and button below */}
           <div className="animate-on-scroll">
             <p className="text-gray-200 text-lg md:text-xl lg:text-2xl xl:text-3xl font-light tracking-wide italic">
