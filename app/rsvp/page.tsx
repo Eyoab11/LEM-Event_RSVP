@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { RSVPForm } from '../../components/RSVPForm';
-import { PartnerLogoGrid } from '../../components/PartnerLogoGrid';
 import { EventDetails } from '../../components/EventDetails';
 
 // Dummy data for the event
@@ -32,54 +31,6 @@ const eventData = {
   description: 'Join us for the official launch of LEM Ventures - an exclusive evening of networking, innovation, and celebration.'
 };
 
-// Dummy partner logos data
-const partnerLogos = [
-  {
-    id: '1',
-    name: 'Title Sponsor 1',
-    logoUrl: '/logo-79.png',
-    tier: 'title' as const,
-    websiteUrl: undefined,
-    displayOrder: 1,
-    isActive: true
-  },
-  {
-    id: '2',
-    name: 'Title Sponsor 2',
-    logoUrl: '/Frame.png',
-    tier: 'title' as const,
-    websiteUrl: undefined,
-    displayOrder: 2,
-    isActive: true
-  },
-  {
-    id: '3',
-    name: 'Gold Partner 1',
-    logoUrl: '/logo-79.png',
-    tier: 'gold' as const,
-    websiteUrl: undefined,
-    displayOrder: 3,
-    isActive: true
-  },
-  {
-    id: '4',
-    name: 'Gold Partner 2',
-    logoUrl: '/Frame.png',
-    tier: 'gold' as const,
-    websiteUrl: undefined,
-    displayOrder: 4,
-    isActive: true
-  },
-  {
-    id: '5',
-    name: 'Silver Partner 1',
-    logoUrl: '/logo-79.png',
-    tier: 'silver' as const,
-    websiteUrl: undefined,
-    displayOrder: 5,
-    isActive: true
-  }
-];
 
 export default function RSVPPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -162,10 +113,7 @@ export default function RSVPPage() {
               />
             </div>
 
-            {/* Partner Logos */}
-            <div className={`${isLoaded ? 'animate-fade-in-up delay-500' : 'opacity-0'}`}>
-              <PartnerLogoGrid partners={partnerLogos} displayTiers={true} />
-            </div>
+
           </div>
         </div>
       </section>
