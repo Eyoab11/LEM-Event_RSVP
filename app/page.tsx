@@ -1,11 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const searchParams = useSearchParams();
+  const token = searchParams.get('token');
+
+  // Build RSVP link with token if available
+  const rsvpLink = token ? `/rsvp?token=${token}` : '/rsvp';
 
   useEffect(() => {
     setIsLoaded(true);
@@ -59,7 +65,7 @@ export default function Home() {
         
         {/* RSVP Button */}
         <div className={`absolute top-6 right-6 md:top-12 md:right-12 z-20 ${isLoaded ? 'animate-fade-in-scale delay-300' : 'opacity-0'}`}>
-          <a href="/rsvp">
+          <a href={rsvpLink}>
             <button className="premium-badge bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base font-bold tracking-wider shadow-2xl border border-amber-400/30 transition-all duration-300 hover:scale-105 hover:shadow-3xl">
               RSVP
             </button>
@@ -208,7 +214,7 @@ export default function Home() {
 
           {/* RSVP Button */}
           <div className="animate-on-scroll">
-            <a href="/rsvp">
+            <a href={rsvpLink}>
               <button className="premium-button bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-400 text-white px-8 py-4 md:px-12 md:py-6 lg:px-14 lg:py-7 rounded-full text-lg md:text-xl lg:text-2xl font-bold tracking-wider transition-all duration-500 shadow-2xl border border-amber-400/30">
                 Count me in
               </button>

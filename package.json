@@ -1,7 +1,10 @@
 {
-  "name": "event-rsvp",
-  "version": "0.1.0",
-  "private": true,
+  "name": "event-rsvp-frontend",
+  "version": "1.0.0",
+  "description": "Event RSVP Frontend - Modern Next.js application for event registration and RSVP management",
+  "author": "",
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",

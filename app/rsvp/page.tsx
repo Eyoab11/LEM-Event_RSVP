@@ -1,44 +1,76 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { RSVPForm } from '../../components/RSVPForm';
 import { EventDetails } from '../../components/EventDetails';
 
-// Dummy data for the event
-const eventData = {
-  id: '1',
-  eventName: 'LEM Ventures Official Launch',
-  eventDate: new Date('2026-02-21T19:00:00-08:00'),
-  eventStartTime: '19:00',
-  eventEndTime: '23:00',
-  venue: {
-    name: 'The Ritz Carlton',
-    address: '900 W Olympic Blvd',
-    city: 'Los Angeles',
-    state: 'CA',
-    zipCode: '90015',
-    coordinates: {
-      latitude: 34.0430,
-      longitude: -118.2673
-    }
-  },
-  capacity: 150,
-  currentRegistrations: 47,
-  waitlistEnabled: true,
-  registrationOpen: true,
-  dressCode: 'Business Formal',
-  description: 'Join us for the official launch of LEM Ventures - an exclusive evening of networking, innovation, and celebration.'
-};
-
+import { API_ENDPOINTS, apiCall } from '../../lib/api';
 
 export default function RSVPPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [eventData, setEventData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const token = searchParams?.get('token');
 
   useEffect(() => {
-    setIsLoaded(true);
-    
+    const fetchEventData = async () => {
+      if (!token) {
+        setError('No invitation token provided');
+        setLoading(false);
+        return;
+      }
+
+      try {
+        // Validate token and get event data
+        const inviteData = await apiCall<any>(API_ENDPOINTS.validateInvite(token));
+        
+        // The invite validation already includes the event data
+        const event = inviteData.invite.event;
+        
+        // Transform backend data to frontend format
+        setEventData({
+          id: event.id,
+          eventName: event.eventName,
+          eventDate: new Date(event.eventDate),
+          eventStartTime: event.eventStartTime,
+          eventEndTime: event.eventEndTime,
+          venue: {
+            name: event.venueName,
+            address: event.venueAddress,
+            city: event.venueCity,
+            state: event.venueState,
+            zipCode: event.venueZipCode,
+            coordinates: event.venueLatitude && event.venueLongitude ? {
+              latitude: event.venueLatitude,
+              longitude: event.venueLongitude,
+            } : undefined,
+          },
+          capacity: event.capacity,
+          currentRegistrations: event.currentRegistrations,
+          waitlistEnabled: event.waitlistEnabled,
+          registrationOpen: event.registrationOpen,
+          dressCode: event.dressCode,
+          description: event.description || '',
+        });
+        
+        setIsLoaded(true);
+      } catch (err) {
+        console.error('Error fetching event data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load event details');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEventData();
+  }, [token]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
@@ -49,6 +81,38 @@ export default function RSVPPage() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  if (loading) {
+    return (
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-2 border-amber-500/30 border-t-amber-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading event details...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !eventData) {
+    return (
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-light mb-4 text-red-400">Invalid Invitation</h2>
+          <p className="text-gray-400 mb-6">{error || 'This invitation link is invalid or has expired'}</p>
+          <a href="/">
+            <button className="premium-button bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 hover:from-gray-600 hover:via-gray-500 hover:to-gray-600 text-white px-6 py-3 rounded-full text-sm font-medium">
+              Back to Home
+            </button>
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-black text-white min-h-screen overflow-x-hidden">
@@ -109,7 +173,7 @@ export default function RSVPPage() {
             <div className={`mb-8 md:mb-12 ${isLoaded ? 'animate-fade-in-up delay-400' : 'opacity-0'}`}>
               <RSVPForm 
                 eventData={eventData}
-                linkToken="demo-token-12345"
+                linkToken={token || ''}
               />
             </div>
 

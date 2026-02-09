@@ -1,48 +1,134 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Image from 'next/image';
-import { QRCodeDisplay } from '../../../components/QRCodeDisplay';
+import { QRCodeDisplay } from '../../../../components/QRCodeDisplay';
+
+import { API_ENDPOINTS, apiCall } from '../../../../lib/api';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
 
+interface RegistrationData {
+  attendee: {
+    id: string;
+    name: string;
+    company: string;
+    title: string;
+    email: string;
+    status: string;
+    registrationId: string;
+    qrCode: string;
+  };
+  plusOne?: {
+    name: string;
+    company: string;
+    title: string;
+    email: string;
+  };
+  event: {
+    id: string;
+    eventName: string;
+    eventDate: string;
+    eventStartTime: string;
+    eventEndTime: string;
+    venueName: string;
+    venueAddress: string;
+    venueCity: string;
+    venueState: string;
+    venueZipCode: string;
+    capacity: number;
+    currentRegistrations: number;
+    dressCode: string;
+  };
+  isWaitlisted: boolean;
+}
+
 function RSVPSuccessContent() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const searchParams = useSearchParams();
-  
-  // Get registration details from URL params (in real app, this would come from API)
-  const attendeeName = searchParams.get('name') || 'Guest';
-  const hasGuest = searchParams.get('guest') === 'true';
-  const isWaitlisted = searchParams.get('waitlisted') === 'true';
+  const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const params = useParams();
+  const attendeeId = params?.attendeeId as string;
 
   useEffect(() => {
-    setIsLoaded(true);
-  }, []);
+    const fetchRegistrationData = async () => {
+      if (!attendeeId) {
+        setError('No registration ID provided');
+        setLoading(false);
+        return;
+      }
 
-  const handleAddToCalendar = () => {
-    // Generate Google Calendar URL
-    const eventData = {
-      title: 'LEM Ventures Official Launch',
-      start: '20260221T190000',
-      end: '20260221T230000',
-      location: 'The Ritz Carlton, 900 W Olympic Blvd, Los Angeles, CA 90015',
-      description: 'Join us for the official launch of LEM Ventures - an exclusive evening of networking, innovation, and celebration.'
+      try {
+        const data = await apiCall<RegistrationData>(API_ENDPOINTS.getRegistration(attendeeId));
+        setRegistrationData(data);
+        setIsLoaded(true);
+      } catch (err) {
+        console.error('Error fetching registration:', err);
+        setError('Failed to load registration details');
+      } finally {
+        setLoading(false);
+      }
     };
 
-    // Create Google Calendar URL
-    const googleCalendarUrl = new URL('https://calendar.google.com/calendar/render');
-    googleCalendarUrl.searchParams.set('action', 'TEMPLATE');
-    googleCalendarUrl.searchParams.set('text', eventData.title);
-    googleCalendarUrl.searchParams.set('dates', `${eventData.start}/${eventData.end}`);
-    googleCalendarUrl.searchParams.set('location', eventData.location);
-    googleCalendarUrl.searchParams.set('details', eventData.description);
-    googleCalendarUrl.searchParams.set('ctz', 'America/Los_Angeles');
+    fetchRegistrationData();
+  }, [attendeeId]);
 
-    // Open Google Calendar in new tab
-    window.open(googleCalendarUrl.toString(), '_blank');
+  const handleAddToCalendar = () => {
+    if (!registrationData) return;
+
+    // Download calendar file from backend
+    window.open(API_ENDPOINTS.downloadCalendar(attendeeId), '_blank');
   };
+
+  const handleDownloadQR = () => {
+    if (!registrationData) return;
+
+    // Get QR code from backend
+    window.open(API_ENDPOINTS.getAttendeeQR(attendeeId), '_blank');
+  };
+
+  if (loading) {
+    return (
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-2 border-amber-500/30 border-t-amber-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading your registration...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !registrationData) {
+    return (
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-light mb-4 text-red-400">Registration Not Found</h2>
+          <p className="text-gray-400 mb-6">{error || 'Unable to load registration details'}</p>
+          <a href="/">
+            <button className="premium-button bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 hover:from-gray-600 hover:via-gray-500 hover:to-gray-600 text-white px-6 py-3 rounded-full text-sm font-medium">
+              Back to Home
+            </button>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  const { attendee, plusOne, event, isWaitlisted } = registrationData;
+  const eventDate = new Date(event.eventDate).toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   return (
     <div className="bg-black text-white min-h-screen overflow-x-hidden">
@@ -111,9 +197,9 @@ function RSVPSuccessContent() {
               </h1>
               <p className="text-gray-300 text-lg sm:text-xl md:text-2xl font-light max-w-3xl mx-auto leading-relaxed px-4">
                 {isWaitlisted ? (
-                  <>Thank you for your interest, {attendeeName}. You've been added to our waitlist and we'll notify you if spots become available.</>
+                  <>Thank you for your interest, {attendee.name}. You've been added to our waitlist and we'll notify you if spots become available.</>
                 ) : (
-                  <>Thank you for registering, {attendeeName}. We're excited to see you at the LEM Ventures Official Launch!</>
+                  <>Thank you for registering, {attendee.name}. We're excited to see you at {event.eventName}!</>
                 )}
               </p>
             </div>
@@ -127,6 +213,10 @@ function RSVPSuccessContent() {
                 
                 <div className="space-y-4 text-left">
                   <div className="flex justify-between items-center py-3 border-b border-white/10">
+                    <span className="text-gray-300">Registration ID:</span>
+                    <span className="text-white font-medium font-mono">{attendee.registrationId}</span>
+                  </div>
+                  <div className="flex justify-between items-center py-3 border-b border-white/10">
                     <span className="text-gray-300">Status:</span>
                     <span className={`font-medium ${isWaitlisted ? 'text-amber-400' : 'text-green-400'}`}>
                       {isWaitlisted ? 'Waitlisted' : 'Confirmed'}
@@ -135,16 +225,16 @@ function RSVPSuccessContent() {
                   <div className="flex justify-between items-center py-3 border-b border-white/10">
                     <span className="text-gray-300">Attendees:</span>
                     <span className="text-white font-medium">
-                      {hasGuest ? '2 (You + 1 Guest)' : '1 (Just You)'}
+                      {plusOne ? '2 (You + 1 Guest)' : '1 (Just You)'}
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-3 border-b border-white/10">
                     <span className="text-gray-300">Event Date:</span>
-                    <span className="text-white font-medium">Saturday, February 21, 2026</span>
+                    <span className="text-white font-medium">{eventDate}</span>
                   </div>
                   <div className="flex justify-between items-center py-3">
                     <span className="text-gray-300">Time:</span>
-                    <span className="text-white font-medium">7:00 PM - 11:00 PM</span>
+                    <span className="text-white font-medium">{event.eventStartTime} - {event.eventEndTime}</span>
                   </div>
                 </div>
               </div>
@@ -158,7 +248,7 @@ function RSVPSuccessContent() {
                     onClick={handleAddToCalendar}
                     className="premium-button bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-400 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-medium tracking-wide mx-2"
                   >
-                    📅 Add to Google Calendar
+                    📅 Add to Calendar
                   </button>
                   <div className="text-sm text-gray-400">
                     Check your email for your unique QR code and event details
@@ -172,9 +262,6 @@ function RSVPSuccessContent() {
                     Back to Home
                   </button>
                 </a>
-                <button className="text-amber-400 hover:text-amber-300 font-medium transition-colors duration-300 px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
-                  Share Event
-                </button>
               </div>
             </div>
 
@@ -182,9 +269,11 @@ function RSVPSuccessContent() {
             {!isWaitlisted && (
               <div className={`mt-12 ${isLoaded ? 'animate-fade-in-up delay-600' : 'opacity-0'}`}>
                 <QRCodeDisplay 
-                  attendeeName={attendeeName}
-                  registrationId={`REG-${Date.now().toString().slice(-8)}`}
-                  eventId="lem-ventures-launch-2026"
+                  attendeeName={attendee.name}
+                  registrationId={attendee.registrationId}
+                  eventId={event.id}
+                  qrCodeData={attendee.qrCode}
+                  attendeeId={attendeeId}
                 />
               </div>
             )}

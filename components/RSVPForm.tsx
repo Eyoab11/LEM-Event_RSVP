@@ -5,6 +5,8 @@ import { AttendeeForm } from './AttendeeForm';
 import { ConfirmationStep } from './ConfirmationStep';
 import { MobileNavigation, DesktopStepIndicator } from './MobileNavigation';
 
+import { API_ENDPOINTS, apiCall } from '../lib/api';
+
 export interface AttendeeData {
   name: string;
   company: string;
@@ -78,28 +80,33 @@ export function RSVPForm({ eventData, linkToken }: RSVPFormProps) {
   const handleFinalSubmit = async () => {
     setIsSubmitting(true);
     
-    // Simulate API call with dummy data
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Simulate successful registration
-      console.log('Registration submitted:', {
-        primaryAttendee,
-        plusOne,
-        linkToken,
-        eventId: eventData.id
+      // Prepare the RSVP data
+      const rsvpData = {
+        token: linkToken,
+        name: primaryAttendee.name,
+        company: primaryAttendee.company,
+        title: primaryAttendee.title,
+        email: primaryAttendee.email,
+        plusOne: plusOne ? {
+          name: plusOne.name,
+          company: plusOne.company,
+          title: plusOne.title,
+          email: plusOne.email,
+        } : undefined,
+      };
+
+      // Submit to backend API
+      const result = await apiCall<any>(API_ENDPOINTS.submitRSVP(), {
+        method: 'POST',
+        body: JSON.stringify(rsvpData),
       });
       
       // Redirect to success page with registration details
-      const params = new URLSearchParams({
-        name: primaryAttendee.name,
-        guest: plusOne ? 'true' : 'false',
-        waitlisted: (eventData.currentRegistrations >= eventData.capacity) ? 'true' : 'false'
-      });
-      
-      window.location.href = `/rsvp/success?${params.toString()}`;
+      window.location.href = `/rsvp/success/${result.attendee.id}`;
     } catch (error) {
       console.error('Registration failed:', error);
+      alert(error instanceof Error ? error.message : 'Registration failed. Please try again.');
       setIsSubmitting(false);
     }
   };
