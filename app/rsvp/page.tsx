@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { RSVPForm } from '../../components/RSVPForm';
@@ -8,7 +8,7 @@ import { EventDetails } from '../../components/EventDetails';
 
 import { API_ENDPOINTS, apiCall } from '../../lib/api';
 
-export default function RSVPPage() {
+function RSVPContent() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [eventData, setEventData] = useState<any>(null);
@@ -182,5 +182,20 @@ export default function RSVPPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function RSVPPage() {
+  return (
+    <Suspense fallback={
+      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-2 border-amber-500/30 border-t-amber-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading...</p>
+        </div>
+      </div>
+    }>
+      <RSVPContent />
+    </Suspense>
   );
 }
