@@ -5,9 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.levyeromomedia.com}
+        - NEXT_PUBLIC_API_URL=https://api.levyeromomedia.com
     ports:
       - "127.0.0.1:4800:3000"
-    env_file:
-      - .env.production
+    environment:
+      - NODE_ENV=production
     restart: unless-stopped
