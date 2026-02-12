@@ -138,9 +138,6 @@ export function RSVPForm({ eventData, linkToken }: RSVPFormProps) {
           </div>
           
           <div className="space-y-4">
-            <button className="premium-button bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-400 text-white px-8 py-4 rounded-full text-lg font-medium tracking-wide w-full md:w-auto">
-              Add to Calendar
-            </button>
             <div className="text-sm text-gray-400">
               Check your email for your unique QR code
             </div>

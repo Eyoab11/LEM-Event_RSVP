@@ -1,0 +1,13 @@
+services:
+  lem-event-app:
+    container_name: lem-event-website
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.levyeromomedia.com}
+    ports:
+      - "127.0.0.1:4800:3000"
+    env_file:
+      - .env.production
+    restart: unless-stopped

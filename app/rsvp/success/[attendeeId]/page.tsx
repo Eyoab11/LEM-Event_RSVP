@@ -244,12 +244,6 @@ function RSVPSuccessContent() {
             <div className={`space-y-6 ${isLoaded ? 'animate-fade-in-up delay-500' : 'opacity-0'}`}>
               {!isWaitlisted && (
                 <div className="space-y-4">
-                  <button 
-                    onClick={handleAddToCalendar}
-                    className="premium-button bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-400 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-medium tracking-wide mx-2"
-                  >
-                    📅 Add to Calendar
-                  </button>
                   <div className="text-sm text-gray-400">
                     Check your email for your unique QR code and event details
                   </div>
