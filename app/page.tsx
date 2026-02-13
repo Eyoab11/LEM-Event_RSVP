@@ -108,6 +108,15 @@ function HomeContent() {
               We're officially launching Levy Eromo Media and we want you there! Join us for a first look at our upcoming projects and an evening of bold storytelling.
             </p>
           </div>
+
+          {/* RSVP Button - Larger */}
+          <div className={`mt-10 md:mt-12 ${isLoaded ? 'animate-fade-in-up delay-600' : 'opacity-0'}`}>
+            <a href={rsvpLink}>
+              <button className="premium-button bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-400 hover:via-amber-500 hover:to-amber-400 text-white px-8 py-4 md:px-10 md:py-5 rounded-full text-lg md:text-xl font-bold tracking-wider transition-all duration-500 shadow-2xl border border-amber-400/30 hover:scale-105 hover:shadow-3xl">
+                RSVP
+              </button>
+            </a>
+          </div>
         </div>
       </section>
 
