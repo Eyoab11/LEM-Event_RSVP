@@ -130,6 +130,14 @@ function RSVPSuccessContent() {
     day: 'numeric',
   });
 
+  const formatTime = (time: string) => {
+    const [hours, minutes] = time.split(':');
+    const hour = parseInt(hours);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour % 12 || 12;
+    return `${displayHour}:${minutes} ${ampm}`;
+  };
+
   return (
     <div className="bg-black text-white min-h-screen overflow-x-hidden">
       <section className="relative min-h-screen flex flex-col overflow-hidden">
@@ -234,7 +242,7 @@ function RSVPSuccessContent() {
                   </div>
                   <div className="flex justify-between items-center py-3">
                     <span className="text-gray-300">Time:</span>
-                    <span className="text-white font-medium">{event.eventStartTime} - {event.eventEndTime}</span>
+                    <span className="text-white font-medium">{formatTime(event.eventStartTime)} - {formatTime(event.eventEndTime)}</span>
                   </div>
                 </div>
               </div>
