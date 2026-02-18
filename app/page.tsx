@@ -148,7 +148,7 @@ function HomeContent() {
                   src="/wine.png"
                   alt="Wine Glasses"
                   fill
-                  className="object-contain animate-float drop-shadow-2xl brightness-0 invert"
+                  className="object-contain drop-shadow-2xl brightness-0 invert"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-400/10 via-transparent to-transparent rounded-full"></div>
               </div>
