@@ -1,7 +1,6 @@
 'use client';
 
 import { EventData } from './RSVPForm';
-import { CapacityStatus } from './CapacityStatus';
 
 interface EventDetailsProps {
   eventData: EventData;
@@ -59,17 +58,8 @@ export function EventDetails({ eventData }: EventDetailsProps) {
           </div>
         </div>
 
-        {/* Capacity and Registration Status */}
+        {/* Event Description */}
         <div className="space-y-6">
-          <div>
-            <h3 className="text-amber-300 text-sm uppercase tracking-wider mb-4">Availability</h3>
-            <CapacityStatus 
-              currentRegistrations={eventData.currentRegistrations}
-              capacity={eventData.capacity}
-            />
-          </div>
-
-          {/* Event Description */}
           <div>
             <h3 className="text-amber-300 text-sm uppercase tracking-wider mb-2">About</h3>
             <p className="text-gray-300 leading-relaxed">
