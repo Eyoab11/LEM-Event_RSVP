@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LEM Ventures Launch - RSVP",
-  description: "Join us for the official launch of LEM Ventures. An evening of networking, innovation, and celebration.",
+  title: "Levy Eromo Media Launch - RSVP",
+  description: "Join us for the official launch of Levy Eromo Media. An evening of networking, innovation, and celebration.",
 };
 
 export const viewport: Viewport = {

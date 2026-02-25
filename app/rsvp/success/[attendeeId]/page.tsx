@@ -158,7 +158,7 @@ function RSVPSuccessContent() {
             <div className="w-24 h-8 sm:w-28 sm:h-10 md:w-32 md:h-12 lg:w-36 lg:h-14 relative flex-shrink-0">
               <Image
                 src="/lemmm-removebg-preview.png"
-                alt="LEM Ventures Logo"
+                alt="Levy Eromo Media Logo"
                 fill
                 className="object-contain"
               />
