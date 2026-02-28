@@ -137,38 +137,20 @@ export function ConfirmationStep({
           )}
         </div>
 
-        {/* Capacity Status */}
-        <div className="mb-8 p-6 bg-white/5 rounded-2xl border border-white/10">
-          <h3 className="text-xl font-medium mb-4 text-amber-300">Registration Status</h3>
-          <div className="space-y-3">
-            <div className="flex justify-between text-gray-300">
-              <span>Total Attendees:</span>
-              <span className="text-white font-medium">{attendeeCount}</span>
+        {/* Waitlist Notice (if applicable) */}
+        {willBeWaitlisted && (
+          <div className="mb-8 p-6 bg-amber-500/10 border border-amber-500/30 rounded-2xl">
+            <div className="flex items-center space-x-2 text-amber-300 mb-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+              <span className="font-medium">Waitlist Registration</span>
             </div>
-            <div className="flex justify-between text-gray-300">
-              <span>Current Registrations:</span>
-              <span className="text-white font-medium">{eventData.currentRegistrations}/{eventData.capacity}</span>
-            </div>
-            <div className="flex justify-between text-gray-300">
-              <span>Spots Remaining:</span>
-              <span className="text-white font-medium">{Math.max(0, spotsRemaining)}</span>
-            </div>
-            
-            {willBeWaitlisted && (
-              <div className="mt-4 p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl">
-                <div className="flex items-center space-x-2 text-amber-300">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                  </svg>
-                  <span className="font-medium">Waitlist Registration</span>
-                </div>
-                <p className="text-amber-200 text-sm mt-2">
-                  The event is at capacity. You will be added to the waitlist and notified if spots become available.
-                </p>
-              </div>
-            )}
+            <p className="text-amber-200 text-sm">
+              The event is at capacity. You will be added to the waitlist and notified if spots become available.
+            </p>
           </div>
-        </div>
+        )}
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4">
