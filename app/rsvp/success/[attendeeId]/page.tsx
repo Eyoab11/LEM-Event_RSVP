@@ -128,6 +128,7 @@ function RSVPSuccessContent() {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'UTC',
   });
 
   const formatTime = (time: string) => {

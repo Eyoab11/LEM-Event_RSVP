@@ -8,11 +8,13 @@ interface EventDetailsProps {
 
 export function EventDetails({ eventData }: EventDetailsProps) {
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', {
+    // Use UTC methods to avoid timezone conversion
+    return new Date(date).toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: 'UTC'
     });
   };
 
